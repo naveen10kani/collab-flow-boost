@@ -17,7 +17,7 @@ const Dashboard = () => {
     { id: 1, user: 'John Doe', action: 'completed task', item: 'Q1 Report Analysis', time: '10 minutes ago' },
     { id: 2, user: 'Emma Wilson', action: 'commented on', item: 'Homepage Redesign', time: '25 minutes ago' },
     { id: 3, user: 'Michael Brown', action: 'created task', item: 'API Integration', time: '1 hour ago' },
-    { id: 4, user: 'Sophia Martinez', action: 'assigned', item: 'Database Migration' to 'Lucas Chen', time: '2 hours ago' },
+    { id: 4, user: 'Sophia Martinez', action: 'assigned', item: 'Database Migration to Lucas Chen', time: '2 hours ago' },
   ];
 
   const getPriorityColor = (priority: string) => {
