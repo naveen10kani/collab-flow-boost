@@ -6,19 +6,9 @@ import { Link } from 'react-router-dom';
 import AISuggestions from '../common/AISuggestions';
 
 const Dashboard = () => {
-  // Mock data for the dashboard
-  const recentTasks = [
-    { id: 1, title: 'Design new landing page', dueDate: '2025-04-10', status: 'In Progress', team: 'Marketing', priority: 'High' },
-    { id: 2, title: 'Fix authentication bug', dueDate: '2025-04-05', status: 'Pending Review', team: 'Development', priority: 'Critical' },
-    { id: 3, title: 'Create onboarding documentation', dueDate: '2025-04-15', status: 'Not Started', team: 'Product', priority: 'Medium' },
-  ];
-
-  const teamActivities = [
-    { id: 1, user: 'John Doe', action: 'completed task', item: 'Q1 Report Analysis', time: '10 minutes ago' },
-    { id: 2, user: 'Emma Wilson', action: 'commented on', item: 'Homepage Redesign', time: '25 minutes ago' },
-    { id: 3, user: 'Michael Brown', action: 'created task', item: 'API Integration', time: '1 hour ago' },
-    { id: 4, user: 'Sophia Martinez', action: 'assigned', item: 'Database Migration to Lucas Chen', time: '2 hours ago' },
-  ];
+  // Remove mock data
+  const recentTasks: any[] = [];
+  const teamActivities: any[] = [];
 
   const getPriorityColor = (priority: string) => {
     switch (priority.toLowerCase()) {
@@ -61,18 +51,22 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentTasks.map(task => (
-                <div key={task.id} className="task-card flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:justify-between animate-fade-in">
-                  <div>
-                    <h3 className="font-medium text-foreground">{task.title}</h3>
-                    <p className="text-sm text-muted-foreground">Due on {new Date(task.dueDate).toLocaleDateString()}</p>
+              {recentTasks.length === 0 ? (
+                <p className="text-center text-muted-foreground">No tasks available</p>
+              ) : (
+                recentTasks.map(task => (
+                  <div key={task.id} className="task-card flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:justify-between animate-fade-in">
+                    <div>
+                      <h3 className="font-medium text-foreground">{task.title}</h3>
+                      <p className="text-sm text-muted-foreground">Due on {new Date(task.dueDate).toLocaleDateString()}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs bg-muted rounded-full px-2 py-1">{task.team}</span>
+                      <span className={`text-xs rounded-full px-2 py-1 ${getPriorityColor(task.priority)}`}>{task.priority}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs bg-muted rounded-full px-2 py-1">{task.team}</span>
-                    <span className={`text-xs rounded-full px-2 py-1 ${getPriorityColor(task.priority)}`}>{task.priority}</span>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </CardContent>
         </Card>
@@ -87,19 +81,23 @@ const Dashboard = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {teamActivities.map(activity => (
-              <div key={activity.id} className="flex items-start gap-4 animate-fade-in">
-                <div className="active-user w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <span className="text-sm font-medium">{activity.user.split(' ').map(n => n[0]).join('')}</span>
+            {teamActivities.length === 0 ? (
+              <p className="text-center text-muted-foreground">No team activities available</p>
+            ) : (
+              teamActivities.map(activity => (
+                <div key={activity.id} className="flex items-start gap-4 animate-fade-in">
+                  <div className="active-user w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <span className="text-sm font-medium">{activity.user.split(' ').map(n => n[0]).join('')}</span>
+                  </div>
+                  <div>
+                    <p className="text-sm">
+                      <span className="font-medium">{activity.user}</span> {activity.action} <span className="font-medium">{activity.item}</span>
+                    </p>
+                    <p className="text-xs text-muted-foreground">{activity.time}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm">
-                    <span className="font-medium">{activity.user}</span> {activity.action} <span className="font-medium">{activity.item}</span>
-                  </p>
-                  <p className="text-xs text-muted-foreground">{activity.time}</p>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </CardContent>
       </Card>
@@ -108,3 +106,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
