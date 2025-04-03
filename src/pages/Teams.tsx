@@ -1,14 +1,14 @@
 
 import React from 'react';
 import AppLayout from '../components/layout/AppLayout';
-import Dashboard from '../components/dashboard/Dashboard';
+import TeamsList from '../components/teams/TeamsList';
 
-const Index = () => {
+const Teams = () => {
   return (
     <AppLayout>
-      <Dashboard />
+      <TeamsList />
     </AppLayout>
   );
 };
 
-export default Index;
+export default Teams;

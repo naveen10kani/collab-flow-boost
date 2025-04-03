@@ -1,14 +1,14 @@
 
 import React from 'react';
 import AppLayout from '../components/layout/AppLayout';
-import Dashboard from '../components/dashboard/Dashboard';
+import TaskBoard from '../components/tasks/TaskBoard';
 
-const Index = () => {
+const Tasks = () => {
   return (
     <AppLayout>
-      <Dashboard />
+      <TaskBoard />
     </AppLayout>
   );
 };
 
-export default Index;
+export default Tasks;
